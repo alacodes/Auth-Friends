@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // import axios from 'axios';
 import { axiosWithAuth } from "../utilities/axiosAuth";
 
@@ -33,6 +33,7 @@ const AddFriend = props => {
           value={newFriend.name}
           onChange={handleChange}
           placeholder="Name"
+          className="friend-input"
         />
         <input
           type="number"
@@ -40,6 +41,7 @@ const AddFriend = props => {
           value={newFriend.age}
           onChange={handleChange}
           placeholder="Age"
+          className="friend-input"
         />
         <input
           type="text"
@@ -47,8 +49,9 @@ const AddFriend = props => {
           value={newFriend.email}
           onChange={handleChange}
           placeholder="Email"
+          className="friend-input"
         />
-        <button>Add Friend</button>
+        <button className="myButton">Add Friend</button>
       </form>
     </div>
   );

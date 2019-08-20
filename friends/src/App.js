@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Login from './components/Login'
 import AddFriend from './components/AddFriend'
+import EditFriend from './components/Edit'
 import PrivateRoute from './components/PrivateRoute'
 import Friends from './components/Friends'
 import './App.css'
@@ -11,9 +12,9 @@ function App() {
     <Router>
       <div className="App">
         <nav>
-          <Link to="/login">Log In</Link>
-          <Link to="/friends">Friends</Link>
-          <Link to="/newFriend">Add a friend</Link>
+          <Link to="/login" className="nav-link">Log In</Link>
+          <Link to="/friends" className="nav-link">Friends</Link>
+          <Link to="/newFriend" className="nav-link">Add a friend</Link>
         </nav>
         <Route exact path="/login" render={(props) => (
           <Login
@@ -22,6 +23,7 @@ function App() {
         )}/>
         <PrivateRoute exact path="/friends" component={Friends} />
         <PrivateRoute exact path="/newfriend" component={AddFriend} />
+        <PrivateRoute path="/edit/:id" component={EditFriend}/>
       </div>
     </Router>
   )

@@ -10,7 +10,7 @@ const FriendCard = props => {
     <div onClick={handleClick} className='friendCard tooltip'>
       <h4>{props.friend.name}</h4>
       <h5>{props.friend.email}</h5>
-      <span class="tooltiptext">Click to edit</span>
+      <span className="tooltiptext">Click to edit</span>
     </div>
   );
 };

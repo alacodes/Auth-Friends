@@ -7,8 +7,6 @@ const Login = (props) => {
       username: "",
       password: ""
   })
-
-
   const handleChange = (e) => {
     e.preventDefault();
     setCredentials({
@@ -44,7 +42,7 @@ const Login = (props) => {
         value={credentials.password}
         onChange={handleChange}
       />
-      <button>Login</button>
+      <button class="myButton">Login</button>
     </form>
   );
 };
