@@ -1,33 +1,64 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.friendCard {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 320px;
+  background: #ccd7de;
+  margin: 10px;
+  padding: 2px 10px;
+  border-radius: 5px;
+  box-shadow: 3px 4px 10px -6px rgba(0,102,166,0.39);
+}
+.friendCard>h4, h5 {
+  margin: 5px;
+}
+.friendCard:hover {
+  transform: scale(1.01,1.01);
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+h4, h5 {
+  font-weight: normal;
+  color: #00375A
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  padding: 2px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 35%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }

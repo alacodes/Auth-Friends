@@ -1,24 +1,25 @@
-import React, {useState, useEffect} from 'react'
-import {axiosWithAuth} from '../utilities/axiosAuth'
+import React, { useState, useEffect } from 'react';
+import { axiosWithAuth } from '../utilities/axiosAuth';
+import FriendCard from './friendCard';
 
 
 const Friends = (props) => {
-
+    console.log('props in Friends', props)
     const [friends, setFriends] = useState([]);
 
-    useEffect(() => {
+    useEffect(()=> {
         axiosWithAuth()
-            .get('http://localhost:5000/api/friends')
-            .then(res => {
-                console.log('get response', res);
-                setFriends(res.data)
-            })
-            .catch(err => console.log('get error', err))
+        .get('http://localhost:5000/api/friends')
+        .then(response => {
+            console.log('get response', response);
+            setFriends(response.data)
+        })
+        .catch(error => console.log('get error', error))
     }, [])
     return(
         <div>
-            <h1>Friends!</h1>
-            {friends.map((friend)=><h2>{friend.name}</h2>)}
+            <h1>Friends</h1>
+            {friends.map((friend)=><FriendCard friend={friend} history={props.history}/>)}
         </div>
     )
 }

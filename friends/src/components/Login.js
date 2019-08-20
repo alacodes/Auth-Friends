@@ -1,52 +1,52 @@
-import React, {useState} from 'react'
-import axios from 'axios'
+import React, { useState } from "react";
+import axios from 'axios';
 
-const Login = () => {
-    const [credentials, setCredentials] = useState({
-        username: '',
-        password: ''
+
+const Login = (props) => {
+  const [credentials, setCredentials] = useState({
+      username: "",
+      password: ""
+  })
+
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setCredentials({
+        ...credentials,
+        [e.target.name]: e.target.value
     })
+  }
+  const login = (e) => {
+    e.preventDefault();
+    // console.log('make axios call with these credentials', credentials)
+    axios.post('http://localhost:5000/api/login', credentials)
+    .then(response => {
+        //response.data.payload is the token
+        // console.log('response', response);
+        localStorage.setItem('token', response.data.payload)
+        props.history.push('/friends')
 
-    const handleChange = (e) => {
-        e.preventDefault();
-        setCredentials({
-            ...credentials,
-            [e.target.name]: e.target.value
-        })
-    }
+    })
+    .catch(error => console.log('Error:', error.response.data.error))
+  }
 
-    const login = (e) => {
-        e.preventDefault();
-        console.log('Use these credentials for axios call: ', credentials)
-        axios
-            .post('http://localhost:5000/api/login', credentials)
-            .then(res => {
-                console.log('token: ', res);
-                localStorage.setItem('token: ', res.data.payload)
-            })
-            .catch(err => {
-                console.log('Error: ', err.response.data.error)
-            })
-
-    }
-
-    return (
-        <form onSubmit={login}>
-            <input
-                type='text'
-                name='username'
-                value={credentials.username}
-                onChange={handleChange}
-            />
-            <input
-                type='password'
-                name='password'
-                value={credentials.password}
-                onChange={handleChange}
-            />
-            <button>Login</button>
-        </form>
-    )
-}
+  return (
+    <form onSubmit={login}>
+      <input
+        type="text"
+        name="username"
+        value={credentials.username}
+        onChange={handleChange}
+      />
+      <input
+        type="password"
+        name="password"
+        value={credentials.password}
+        onChange={handleChange}
+      />
+      <button>Login</button>
+    </form>
+  );
+};
 
 export default Login;
