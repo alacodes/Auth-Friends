@@ -18,6 +18,16 @@ const Login = () => {
     const login = (e) => {
         e.preventDefault();
         console.log('Use these credentials for axios call: ', credentials)
+        axios
+            .post('http://localhost:5000/api/login', credentials)
+            .then(res => {
+                console.log('token: ', res);
+                localStorage.setItem('token: ', res.data.payload)
+            })
+            .catch(err => {
+                console.log('Error: ', err.response.data.error)
+            })
+
     }
 
     return (
